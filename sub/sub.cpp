@@ -7,11 +7,11 @@
 
 namespace sub {
     TestClass::TestClass(int index, std::string str) : index(index), str(str) {
-        std::cout << "TestClass Constract" << std::endl;
+        std::cout << "sub TestClass Constructor" << std::endl;
     }
 
     TestClass::~TestClass() {
-        std::cout << "TestClass Constract" << std::endl;
+        std::cout << "sub TestClass Destructor" << std::endl;
     }
 
     void TestClass::setIndex(int i) {
@@ -23,7 +23,7 @@ namespace sub {
     }
 
     std::string TestClass::toString() {
-        std::string s = "index:" + std::to_string(index) + " str:" + str;
+        std::string s = "sub index:" + std::to_string(index) + " str:" + str;
         return s;
     }
 }
