@@ -1,1 +1,1 @@
-add_library(sub sub.cpp)
+add_library(sub ./sub.cpp)

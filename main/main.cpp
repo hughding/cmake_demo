@@ -1,6 +1,6 @@
 #include <iostream>
 #include "sub.h"
-#include "sub2.h"
+#include "include/sub2.h"
 
 int main() {
     sub::TestClass* tc;
