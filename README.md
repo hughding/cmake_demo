@@ -1,6 +1,8 @@
 # cmake_demo
 环境配置
-MinGW安装，bin加入到Path中
+MinGW安装，bin加入到Path中，使用8.1.0版本
+https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/
+
 cmake安装，使用Clion中的cmake，bin加入到Path中
 
 git submodule add -b v1.8.x https://github.com/google/googletest.git 3rdparty/gtest

@@ -8,5 +8,4 @@ TEST(sub, toString) {
     std::cout << tc->toString() << std::endl;
     delete tc;
     ASSERT_EQ(1, 1);
-    ASSERT_EQ(1, 0);
 }
