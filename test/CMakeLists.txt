@@ -10,11 +10,7 @@ FetchContent_MakeAvailable(gtest)
 
 add_executable(unit_tests sub_test.cpp)
 
-target_link_libraries(unit_tests
-  PRIVATE
-    sub sub2
-    gtest_main
-  )
+target_link_libraries(unit_tests sub sub2 gtest_main)
 
 # automatic discovery of unit tests
 include(GoogleTest)
