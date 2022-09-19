@@ -8,11 +8,11 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(gtest)
 
-add_executable(unit_tests sub_toString.cpp)
+add_executable(unit_tests sub_test.cpp)
 
 target_link_libraries(unit_tests
   PRIVATE
-    sub
+    sub sub2
     gtest_main
   )
 
