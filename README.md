@@ -1,8 +1,9 @@
 # cmake_demo
 ## 环境配置
-MinGW安装，bin加入到Path中，使用8.1.0版本
+MinGW安装，bin加入到Path中，使用8.1.0版本，x86_64-8.1.0-release-posix-sjlj-rt_v6-rev0.7z
 https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/
 cmake安装，使用Clion中的cmake，bin加入到Path中
+linux中的make，在MinGW中为mingw32-make
 
 ## git module
 git submodule add -b v1.8.x https://github.com/google/googletest.git 3rdparty/gtest
@@ -26,3 +27,8 @@ cd build/bin
 cd ../../
 lcov -d build -b . --no-external -c -o CMakeGcovSupportCoverage.info
 genhtml -o CMakeGcovSupportCoverageReport --prefix='pwd' CMakeGcovSupportInitialCoverage.info CMakeGcovSupportCoverage.info
+
+## protobuf 2.5.0库安装
+https://github.com/protocolbuffers/protobuf/releases?page=11
+protoc-2.5.0-win32.zip protoc.exe所在目录添加到Path中
+protobuf-2.5.0.zip
