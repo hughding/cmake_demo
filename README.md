@@ -31,6 +31,7 @@ gmake unittest-volumemanager -j9
 cd .. && lcov -d build -z && lcov -d build -b . --no-external --initial -c -o CMakeGcovSupportInitialCoverage.info
 ./build/bin/unittest-volumemanager
 lcov -d build -b . --no-external -c -o CMakeGcovSupportCoverage.info
+lcov -r CMakeGcovSupportInitialCoverage.info "*/proto/*" -o CMakeGcovSupportInitialCoverage.info
 genhtml -o CMakeGcovSupportCoverageReport --prefix='pwd' CMakeGcovSupportInitialCoverage.info CMakeGcovSupportCoverage.info
 此时会生成CMakeGcovSupportCoverageReport文件夹，打开文件夹中的index.html，即可看到代码覆盖率
 zip -r CMakeGcovSupportCoverageReport.zip CMakeGcovSupportCoverageReport
