@@ -54,7 +54,7 @@ genhtml -o CMakeGcovSupportCoverageReport --prefix='pwd' CMakeGcovSupportInitial
 zip -q -r CMakeGcovSupportCoverageReport.zip CMakeGcovSupportCoverageReport
 ```
 
-## 单元测试覆盖率(gcov)
+## 单元测试覆盖率(gcovr)
 ```
 UNITTEST_TARGET_LIST=(unittest-a unittest-b)
 mkdir build && cd build
