@@ -24,17 +24,55 @@ git rm -r --cached 3rdparty/gtest
 find_path 搜索指定头文件路径。
 find_library 搜索指定静态、动态链接库路径。
 
-## 单元测试覆盖率
+## 单元测试覆盖率(lcov)
+```
+UNITTEST_TARGET_LIST=(unittest-a unittest-b)
 mkdir build && cd build
 cmake3 -DENABLE_COVERAGE=ON ..
-gmake unittest-volumemanager -j9
-cd .. && lcov -d build -z && lcov -d build -b . --no-external --initial -c -o CMakeGcovSupportInitialCoverage.info
-./build/bin/unittest-volumemanager
-lcov -d build -b . --no-external -c -o CMakeGcovSupportCoverage.info
+for target in ${UNITTEST_TARGET_LIST[@]}
+do
+    gmake ${target} -j4
+done
+cd ..
+lcov -d build -z && lcov -d build -b . --no-external --initial -c -o CMakeGcovSupportInitialCoverage.info
+lcov -r CMakeGcovSupportInitialCoverage.info "*/3rdparty/*" -o CMakeGcovSupportInitialCoverage.info
+lcov -r CMakeGcovSupportInitialCoverage.info "*/include/*" -o CMakeGcovSupportInitialCoverage.info
 lcov -r CMakeGcovSupportInitialCoverage.info "*/proto/*" -o CMakeGcovSupportInitialCoverage.info
+lcov -r CMakeGcovSupportInitialCoverage.info "*/test/*" -o CMakeGcovSupportInitialCoverage.info
+
+for target in ${UNITTEST_TARGET_LIST[@]}
+do
+    ./build/bin/${target}
+done
+lcov -d build -b . --no-external -c -o CMakeGcovSupportCoverage.info
+lcov -r CMakeGcovSupportCoverage.info "*/3rdparty/*" -o CMakeGcovSupportCoverage.info
+lcov -r CMakeGcovSupportCoverage.info "*/include/*" -o CMakeGcovSupportCoverage.info
+lcov -r CMakeGcovSupportCoverage.info "*/proto/*" -o CMakeGcovSupportCoverage.info
+lcov -r CMakeGcovSupportCoverage.info "*/test/*" -o CMakeGcovSupportCoverage.info
 genhtml -o CMakeGcovSupportCoverageReport --prefix='pwd' CMakeGcovSupportInitialCoverage.info CMakeGcovSupportCoverage.info
-此时会生成CMakeGcovSupportCoverageReport文件夹，打开文件夹中的index.html，即可看到代码覆盖率
-zip -r CMakeGcovSupportCoverageReport.zip CMakeGcovSupportCoverageReport
+#此时会生成CMakeGcovSupportCoverageReport文件夹，打开文件夹中的index.html，即可看到代码覆盖率
+zip -q -r CMakeGcovSupportCoverageReport.zip CMakeGcovSupportCoverageReport
+```
+
+## 单元测试覆盖率(gcov)
+```
+UNITTEST_TARGET_LIST=(unittest-a unittest-b)
+mkdir build && cd build
+cmake3 -DENABLE_COVERAGE=ON ..
+make ${UNITTEST_TARGET_LIST[*]} -j9
+#生成每个模块的覆盖率json
+cd ..
+for target in ${UNITTEST_TARGET_LIST[*]}
+do
+    ./build/bin/\\${target}
+    gcovr -r . -e 'build/' -e 'src/3rdparty/' -e 'src/proto/' -e 'src/.*/test/' -e 'src/.*/unittest/' --json coverage-\\${target}.json
+done
+#合并生成覆盖率xml
+gcovr -r . --add-tracefile 'coverage-*.json' --xml-pretty --output coverage.xml
+#合并生成覆盖率html
+mkdir CoverageGcovr
+gcovr -r . --add-tracefile 'coverage-*.json' --html --html-details -o CoverageGcovr/index.html
+```
 
 ## protobuf 2.5.0库安装
 https://github.com/protocolbuffers/protobuf/releases?page=11
