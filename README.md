@@ -5,7 +5,7 @@ https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64
 cmake安装，使用Clion中的cmake，bin加入到Path中
 linux中的make，在MinGW中为mingw32-make
 
-##开发工具
+## 开发工具
 Clion配置远程开发(Full Remote Mode)
 1.配置ToolChains，Remote（注意Cmake选择cmake3的bin）
 2.配置Cmake使用Remote ToolChains
@@ -89,3 +89,23 @@ protobuf-2.5.0.zip
 安装动态链接库src/CMakeLists.txt中的ADD_LIBRARY(mockcpp STATIC ${MOCKCPP_SRCS}) STATIC改为SHARED，添加LIBRARY DESTINATION lib到install项。cmake后，make install
 /usr/local/include/mockcpp/
 /usr/local/lib/libmockcpp.a
+
+## gdb调试
+ulimit -c  如果结果为0，系统不能生成core dump文件
+ulimit -c unlimited 开启core dump功能
+cat /proc/sys/kernel/core_pattern  查看core dump文件位置
+
+使用gdb分析coredump文件
+gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/lib文件
+(gdb) set args zmq 6000   # 指定运行时的参数
+(gdb) bt          # backtrace显示当前调用堆栈
+(gdb) bt full     # backtrace显示完整的调用栈和局部变量等信息
+
+(gdb) q           # 退出gdb
+
+使用gdb调试bin文件
+gdb -q ./bin/ipc_server
+(gdb) set args zmq 6000   # 指定运行时的参数
+(gdb) r            # run运行程序直到遇到 结束或者遇到断点
+(gdb) bt          # backtrace显示当前调用堆栈
+(gdb) quit       # 退出gdb
