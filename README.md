@@ -100,7 +100,7 @@ gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/li
 (gdb) set args zmq 6000   # 指定运行时的参数
 (gdb) bt          # backtrace显示当前调用堆栈
 (gdb) bt full     # backtrace显示完整的调用栈和局部变量等信息
-
+(gdb) f 5         # 
 (gdb) q           # 退出gdb
 
 使用gdb调试bin文件
@@ -109,3 +109,6 @@ gdb -q ./bin/ipc_server
 (gdb) r            # run运行程序直到遇到 结束或者遇到断点
 (gdb) bt          # backtrace显示当前调用堆栈
 (gdb) quit       # 退出gdb
+
+gdb指定args参数
+gdb --args /usr/local/essd/bin/essd-master -flagfile=/usr/local/essd/etc/blockmaster/gflags.conf
