@@ -100,15 +100,24 @@ gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/li
 (gdb) set args zmq 6000   # 指定运行时的参数
 (gdb) bt          # backtrace显示当前调用堆栈
 (gdb) bt full     # backtrace显示完整的调用栈和局部变量等信息
-(gdb) f 5         # 
+(gdb) f 5         # 展示bt信息第5行的代码
+(gdb) info args   # 展示函数参数值
+(gdb) info locals # 展示当前函数的局部变量及其对应的值
 (gdb) q           # 退出gdb
 
-使用gdb调试bin文件
-gdb -q ./bin/ipc_server
-(gdb) set args zmq 6000   # 指定运行时的参数
-(gdb) r            # run运行程序直到遇到 结束或者遇到断点
-(gdb) bt          # backtrace显示当前调用堆栈
-(gdb) quit       # 退出gdb
+gdb断点调试
+gdb --args /usr/local/essd/bin/essd-streamserver -flagfile=/usr/local/essd/etc/streamserver/gflags.conf
+(gdb) b /usr/src/debug/krpc-2.7.2-e8198182/libs/src_0/src/policy/krpc_proto.cc:18
+(gdb) info 展示断点信息
+(gdb) r 开始执行程序
+(gdb) s 进入
+(gdb) n 下一步
+(gdb) p conn->addr_ 展示变量
+(gdb) q 退出gdb
 
-gdb指定args参数
-gdb --args /usr/local/essd/bin/essd-master -flagfile=/usr/local/essd/etc/blockmaster/gflags.conf
+#rpm
+rpm -qa 查看已安装的包
+rpm -e <软件包名>  卸载软件包
+rpm -Uvh abc*.rpm --nodeps --force 更新安装包，输出信息，打印包hash值，不校验依赖，强制
+rpm -ivh abc*.rpm 安装包，输出信息，打印hash marks（井号）
+rpm -qpl <package.rpm> 查看安装包的目标目录
