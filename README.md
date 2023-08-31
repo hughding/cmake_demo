@@ -94,6 +94,8 @@ protobuf-2.5.0.zip
 ulimit -c  如果结果为0，系统不能生成core dump文件
 ulimit -c unlimited 开启core dump功能
 cat /proc/sys/kernel/core_pattern  查看core dump文件位置
+如果结果是|/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h 需要重新设置，如下
+echo "./core-%e-%p-%t" > /proc/sys/kernel/core_pattern  设置core dump文件位置在当前执行命令的文件夹内
 
 使用gdb分析coredump文件
 gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/lib文件
@@ -108,7 +110,7 @@ gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/li
 gdb断点调试
 gdb --args /usr/local/essd/bin/essd-streamserver -flagfile=/usr/local/essd/etc/streamserver/gflags.conf
 (gdb) b /usr/src/debug/krpc-2.7.2-e8198182/libs/src_0/src/policy/krpc_proto.cc:18
-(gdb) info 展示断点信息
+(gdb) info b 展示断点信息
 (gdb) r 开始执行程序
 (gdb) s 进入
 (gdb) n 下一步
