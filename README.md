@@ -10,7 +10,7 @@ Clion配置远程开发(Full Remote Mode)
 1.配置ToolChains，Remote（注意Cmake选择cmake3的bin）
 2.配置Cmake使用Remote ToolChains
 3.配置Deployment中Mappings的Deployment path
-4.Cmake后，使用Deployment工具下载ebs_essd/src/proto文件夹（因为Cmake后,生成了proto的c++代码，需要下载下来供Clion使用）
+4.Cmake后，使用Deployment工具下载ESSD/src/proto文件夹（因为Cmake后,生成了proto的c++代码，需要下载下来供Clion使用）
 5.Settings->Languages&Frameworks->Protocol Buffers
 
 ## git module
