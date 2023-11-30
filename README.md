@@ -103,6 +103,7 @@ gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/li
 (gdb) bt          # backtrace显示当前调用堆栈
 (gdb) bt full     # backtrace显示完整的调用栈和局部变量等信息
 (gdb) f 5         # 展示bt信息第5行的代码
+(gdb) l 行号       # 展示行号上下10行的代码
 (gdb) info args   # 展示函数参数值
 (gdb) info locals # 展示当前函数的局部变量及其对应的值
 (gdb) q           # 退出gdb
@@ -116,6 +117,13 @@ gdb --args /usr/local/essd/bin/essd-streamserver -flagfile=/usr/local/essd/etc/s
 (gdb) n 下一步
 (gdb) p conn->addr_ 展示变量
 (gdb) q 退出gdb
+
+gdb调试已存在进程
+(gdb) gdb attach 2880926
+(gdb) info thread
+(gdb) thread 10
+(gdb) b extent_report.cc:418
+(gdb) c
 
 #rpm
 rpm -qa 查看已安装的包
