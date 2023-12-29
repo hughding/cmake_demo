@@ -127,7 +127,6 @@ gdb调试已存在进程
 (gdb) detach
 (gdb) q
 
-
 gdb排查死锁
 (gdb) gdb attach 2880926
 (gdb) info threads
