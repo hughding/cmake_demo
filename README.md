@@ -16,7 +16,7 @@ Clion配置远程开发(Full Remote Mode)
 ## git module
 git submodule add -b v1.8.x https://github.com/google/googletest.git 3rdparty/gtest
 git submodule update --init --recursive
-
+[README.md](README.md)
 git rm -r --cached 3rdparty/gtest
 
 ## CMakeLists.txt配置说明
@@ -120,10 +120,25 @@ gdb --args /usr/local/essd/bin/essd-streamserver -flagfile=/usr/local/essd/etc/s
 
 gdb调试已存在进程
 (gdb) gdb attach 2880926
-(gdb) info thread
+(gdb) info threads
 (gdb) thread 10
 (gdb) b extent_report.cc:418
 (gdb) c
+(gdb) detach
+(gdb) q
+
+
+gdb排查死锁
+(gdb) gdb attach 2880926
+(gdb) info threads
+所有线程堆栈
+(gdb) thread apply all bt
+切换到单个线程
+(gdb) thread 10
+(gdb) bt
+(gdb) p mutex变量
+(gdb) detach
+(gdb) q
 
 #rpm
 rpm -qa 查看已安装的包
