@@ -139,6 +139,9 @@ gdb排查死锁
 (gdb) detach
 (gdb) q
 
+分析内存
+brpc框架，直接进入管理页面heap页面分析
+
 #rpm
 rpm -qa 查看已安装的包
 rpm -qa --last 查看已安装的包，显示最后一次安装时间
@@ -146,3 +149,9 @@ rpm -e <软件包名>  卸载软件包
 rpm -Uvh abc*.rpm --nodeps --force 更新安装包，输出信息，打印包hash值，不校验依赖，强制
 rpm -ivh abc*.rpm 安装包，输出信息，打印hash marks（井号）
 rpm -qpl <package.rpm> 查看安装包的目标目录
+
+#动态链接库
+已加载的动态库 
+ldconfig -p
+打印一个程序或共享库所依赖的动态链接库
+ldd /path/to/your/executable
