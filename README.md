@@ -110,7 +110,7 @@ gdb ./bin/ipc_server   ipc_server.core   # 必须使用与core时一样的bin/li
 
 gdb断点调试
 gdb --args /usr/local/essd/bin/essd-streamserver -flagfile=/usr/local/essd/etc/streamserver/gflags.conf
-(gdb) b /usr/src/debug/krpc-2.7.2-e8198182/libs/src_0/src/policy/krpc_proto.cc:18
+(gdb) b transfer_impl.cc:248
 (gdb) info b 展示断点信息
 (gdb) r 开始执行程序
 (gdb) s 进入
