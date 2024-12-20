@@ -155,3 +155,9 @@ rpm -qpl <package.rpm> 查看安装包的目标目录
 ldconfig -p
 打印一个程序或共享库所依赖的动态链接库
 ldd /path/to/your/executable
+
+#perf工具
+perf record -p <PID> -t <TID> -g -- sleep 60  生成perf.data
+perf script > out.perf  生成out.perf
+下载flamegraph
+git clone https://github.com/brendangregg/FlameGraph.git
