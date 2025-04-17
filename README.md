@@ -115,6 +115,20 @@ gdb --args /usr/local/essd/bin/essd-streamserver -flagfile=/usr/local/essd/etc/s
 (gdb) r 开始执行程序
 (gdb) s 进入
 (gdb) n 下一步
+(gdb) c 继续执行到下一个断点
+(gdb) delete 断点编号
+
+
+
+
+
+
+
+
+
+
+
+
 (gdb) p conn->addr_ 展示变量
 (gdb) q 退出gdb
 
