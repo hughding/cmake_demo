@@ -171,7 +171,16 @@ ldconfig -p
 ldd /path/to/your/executable
 
 #perf工具
+
+#查看占用CPU最久的调用
+perf top -t <TID>
+
+#生成火焰图
 perf record -p <PID> -t <TID> -g -- sleep 60  生成perf.data
+或者 perf record -F 99 -t 23456 -g -- sleep 60
+
 perf script > out.perf  生成out.perf
 下载flamegraph
 git clone https://github.com/brendangregg/FlameGraph.git
+./FlameGraph/stackcollapse-perf.pl out.perf > out.folded
+./FlameGraph/flamegraph.pl out.folded > flame.svg
